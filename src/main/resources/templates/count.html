@@ -111,30 +111,30 @@
 <script>
     //点击加一
     function add() {
-        var name = prompt("请输入信息", "");//将输入的内容赋给变量 name ，
+        let name = prompt("请输入信息", "");//将输入的内容赋给变量 name ，
         //这里需要注意的是，prompt有两个参数，前面是提示的话，后面是当对话框出来后，在对话框里的默认值, 所以我在哪里传了个空
         // if (name)//如果返回的有内容
         // {
             $.ajax({
-                url: "/count/addOrReduOne",
-                data: {'type': "加",'messsage':name},
+                url: "[[@{/count/addOrReduOne}]]",
+                data: {'type': "加",'message':name},
                 type: "POST",
                 success: function (data){
-                    document.location.reload();//重新加载当前页面
+                    // document.location.reload();//重新加载当前页面
                 }
             })
         // }
     }
     //点击减一
     function decr() {
-        var name = prompt("请输入信息", "");//将输入的内容赋给变量 name ，
+        let name = prompt("请输入信息", "");//将输入的内容赋给变量 name ，
         //这里需要注意的是，prompt有两个参数，前面是提示的话，后面是当对话框出来后，在对话框里的默认值, 所以我在哪里传了个空
         $.ajax({
-            url: "/count/addOrReduOne",
-            data: {'type': "减",'messsage':name},
+            url: "[[@{/count/addOrReduOne}]]",
+            data: {'type': "减",'message':name},
             type: "POST",
             success: function (data){
-                document.location.reload();//重新加载当前页面
+                // document.location.reload();//重新加载当前页面
             }
         })
     }
