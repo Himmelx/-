@@ -35,26 +35,19 @@
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree" lay-filter="test">
                 <li class="layui-nav-item"><a th:href="@{/log/list}">日志</a></li>
-                <li class="layui-nav-item"><a th:href="@{/toCount}">计数</a></li>
+                <li class="layui-nav-item"><a th:href="@{/count/getNumber}">计数</a></li>
             </ul>
         </div>
     </div>
 
     <div class="layui-body">
-        <!-- 文章展示页面 -->
-        <div class="panel panel-default article" style="opacity:0.75;">
-            <!-- Default panel contents -->
-            <div class="panel-heading" style="color: #00d95a;font-size: 18px;">日志列表</div>
+        <!-- 内容主体区域 lay-filter用户layui操作数据 -->
+        <table class="layui-hide" id="userTable" lay-filter="userTable">
+        </table>
 
-            <!-- 日志列表  从数据库中取出-->
-            <div>
-                <ul style="margin-bottom: 0" class="list-group" th:each="log:${list}">
-                    <li class="list-group-item" th:text="${log}">
-                        日志
-                    </li>
-                </ul>
-            </div>
-        </div>
+<!--        <div id="userBar" style="display:none;">-->
+<!--            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>-->
+<!--        </div>-->
     </div>
 
 </div>
@@ -87,6 +80,49 @@
             }
         });
 
+    });
+</script>
+
+<script>
+    layui.use(['table','jquery','layer','form'], function(){
+        var table = layui.table;
+        var $=layui.jquery;
+        var form=layui.form;
+        var layer=layui.layer;
+        //渲染数据表格
+        table.render({
+            elem: '#userTable'     //渲染的目标对象
+            ,url:'/log/list'     //数据接口
+            ,title: '日志'     //数据导出时的标题
+            ,toolbar:"#toolbarDemo"    //表头工具条
+            ,defaultToolbar:['filter', 'print', 'exports']
+            ,done:function(res,curr,count){
+                // alert(res);//后台url返回的json字符串
+            }
+            ,totalRow:true//开启合并行
+            ,text:{
+                none:'暂无相关数据'//默认:无数据
+            }
+            ,page: true           //是否启用分页
+            ,cols: [
+                [               //列表数据
+                    // {type: 'checkbox', fixed: 'left',LAY_CHECKED:'true'},
+                    {field:'logId', title:'ID', width:80,sort:true}
+                    ,{field:'operationUser', title:'姓名', width:80}
+                    ,{field:'createTime', title:'时间',width:120,
+                    templet: "<div>{{layui.util.toDateString(d.writeDate,'yyyy-MM-dd')}}</div>"}
+                    ,{field:'type', title:'类型', width:60}
+                    ,{field:'note', title:'信息', width:180}
+                    ,{field:'currentNum', title:'当前数据',width:100}
+                ]
+            ]
+            ,
+        });
+
+        //监听表格复选框选择,根lay-filter来选择
+        table.on('checkbox(userTable)', function(obj){
+            console.log(obj);
+        });
     });
 </script>
 </html>

@@ -26,7 +26,6 @@ public class LogController {
     private LogService logService;
 
     @GetMapping("/list")
-    @ResponseBody
     public String getLogList(Page page, Model model){
         List<Log> list = logService.getList(page);
         model.addAttribute("list",list);

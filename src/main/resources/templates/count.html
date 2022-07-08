@@ -46,7 +46,7 @@
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree" lay-filter="test">
                 <li class="layui-nav-item"><a th:href="@{/log/list}">日志</a></li>
-                <li class="layui-nav-item"><a th:href="@{/toCount}">计数</a></li>
+                <li class="layui-nav-item"><a th:href="@{/count/getNumber}">计数</a></li>
             </ul>
         </div>
     </div>
@@ -117,10 +117,10 @@
         // {
             $.ajax({
                 url: "[[@{/count/addOrReduOne}]]",
-                data: {'type': "加",'message':name},
+                data: {'message':name,'type': "加"},
                 type: "POST",
                 success: function (data){
-                    // document.location.reload();//重新加载当前页面
+                    document.location.reload();//重新加载当前页面
                 }
             })
         // }
@@ -131,10 +131,10 @@
         //这里需要注意的是，prompt有两个参数，前面是提示的话，后面是当对话框出来后，在对话框里的默认值, 所以我在哪里传了个空
         $.ajax({
             url: "[[@{/count/addOrReduOne}]]",
-            data: {'type': "减",'message':name},
+            data: {'message':name,'type': "减"},
             type: "POST",
             success: function (data){
-                // document.location.reload();//重新加载当前页面
+                document.location.reload();//重新加载当前页面
             }
         })
     }
