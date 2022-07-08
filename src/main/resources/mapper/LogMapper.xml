@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yqp.mapper.LogMapper">
+
+    <insert id="add" parameterType="com.yqp.domain.Log">
+        insert into log(operation_user,create_time,`type`,note) value (#{log.operationUser},#{log.createTime},#{log.type},#{log.note})
+    </insert>
+
+    <select id="getList" resultType="com.yqp.domain.Log">
+        select * from log order by create_time desc limit #{pageNum},#{pageSize}
+    </select>
+
+    <select id="getCurrentNum" resultType="int">
+        select current_num from log order by create_time desc limit 1
+    </select>
+
+</mapper>
