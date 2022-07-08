@@ -3,6 +3,8 @@ package com.yqp.controller;
 import com.yqp.common.ResponseJson;
 import com.yqp.common.Utils;
 import com.yqp.domain.User;
+import com.yqp.service.CountService;
+import com.yqp.service.LogService;
 import com.yqp.service.LoginService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,9 +25,14 @@ public class LoginController {
     @Resource
     private LoginService loginService;
 
+    @Resource
+    private LogService logService;
+
     @PostMapping("/loginIn")
     public String loginIn(User user, HttpServletRequest request, Model model){
         User user1 = loginService.loginIn(user, request);
+        Integer currentNum = logService.getCurrentNum();
+
         if (Utils.isEmpty(user1)){
             model.addAttribute("text","用户名或密码错误！");
             return "index";
@@ -35,6 +42,7 @@ public class LoginController {
             Utils.setSession(request,"token",user1.getToken());
             model.addAttribute("text","登录成功！");
             model.addAttribute("user",user1);
+            model.addAttribute("count",currentNum);
             return "count";
         }
     }

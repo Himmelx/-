@@ -48,15 +48,10 @@
 
             <!-- 日志列表  从数据库中取出-->
             <div id="articles" th:fragment="article_list">
-                <ul style="margin-bottom: 0" class="list-group" th:each="log:${logs}">
+                <ul style="margin-bottom: 0" class="list-group" th:each="log:${list}">
                     <li class="list-group-item" th:text="${log}">
                         日志
                     </li>
-                    <li class="list-group-item" th:text="${log}">
-                        日志
-                    </li><li class="list-group-item" th:text="${log}">
-                    日志
-                </li>
                 </ul>
             </div>
         </div>
