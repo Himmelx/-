@@ -54,7 +54,7 @@
     <div class="layui-body">
         <!-- 内容主体区域 -->
         <div style="padding: 15px;">
-            <div class="countNum" id="countNum">
+            <div class="countNum" id="countNum" th:text="${'当前数'+count}">
                 当前数：0
             </div>
 
@@ -113,27 +113,30 @@
     function add() {
         var name = prompt("请输入信息", "");//将输入的内容赋给变量 name ，
         //这里需要注意的是，prompt有两个参数，前面是提示的话，后面是当对话框出来后，在对话框里的默认值, 所以我在哪里传了个空
-        if (name)//如果返回的有内容
-        {
+        // if (name)//如果返回的有内容
+        // {
             $.ajax({
-                url: "/Ar",
-                data: {'articleId': articleId},
+                url: "/count/addOrReduOne",
+                data: {'type': "加",'messsage':name},
                 type: "POST",
                 success: function (data){
-                    if(data===1)
-                        document.getElementById('viewNum'+articleId).innerHTML = viewNum+1;
+                    document.location.reload();//重新加载当前页面
                 }
             })
-        }
+        // }
     }
     //点击减一
     function decr() {
         var name = prompt("请输入信息", "");//将输入的内容赋给变量 name ，
         //这里需要注意的是，prompt有两个参数，前面是提示的话，后面是当对话框出来后，在对话框里的默认值, 所以我在哪里传了个空
-        if (name)//如果返回的有内容
-        {
-            alert("欢迎您：" + name)
-        }
+        $.ajax({
+            url: "/count/addOrReduOne",
+            data: {'type': "减",'messsage':name},
+            type: "POST",
+            success: function (data){
+                document.location.reload();//重新加载当前页面
+            }
+        })
     }
 </script>
 </html>
