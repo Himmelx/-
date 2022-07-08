@@ -4,11 +4,20 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yqp.mapper.LogMapper">
 
+    <resultMap id="logMap" type="com.yqp.domain.Log">
+        <result column="id" property="id"/>
+        <result column="operation_user" property="operationUser"/>
+        <result column="create_time" property="createTime"/>
+        <result column="type" property="type"/>
+        <result column="note" property="note"/>
+        <result column="current_num" property="currentNum"/>
+    </resultMap>
+
     <insert id="add" parameterType="com.yqp.domain.Log">
         insert into log(operation_user,create_time,`type`,note,current_num) value (#{log.operationUser},#{log.createTime},#{log.type},#{log.note},#{log.currentNum})
     </insert>
 
-    <select id="getList" resultType="com.yqp.domain.Log">
+    <select id="getList" resultMap="logMap">
         select * from log order by create_time desc limit #{pageNum},#{pageSize}
     </select>
 

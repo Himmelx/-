@@ -110,13 +110,13 @@
             ,cols: [
                 [               //列表数据
                     // {type: 'checkbox', fixed: 'left',LAY_CHECKED:'true'},
-                    {field:'logId', title:'ID', width:100,sort:true}
+                    {field:'id', title:'ID', width:100,sort:true}
                     ,{field:'operationUser', title:'姓名', width:150}
-                    ,{field:'createTime', title:'时间',width:150,
-                    templet: "<div>{{layui.util.toDateString(d.writeDate,'yyyy-MM-dd')}}</div>"}
+                    ,{field:'createTime', title:'时间',width:250,
+                    templet: "<div>{{layui.util.toDateString(d.writeDate,'yyyy-MM-dd HH:mm:ss')}}</div>"}
                     ,{field:'type', title:'类型', width:100}
-                    ,{field:'note', title:'信息', width:730}
-                    ,{field:'currentNum', title:'当前数据',width:100}
+                    ,{field:'note', title:'信息', width:630}
+                    ,{field:'currentNum', title:'当前次数',width:100}
                 ]
             ]
             ,
