@@ -5,7 +5,7 @@
 <mapper namespace="com.yqp.mapper.LogMapper">
 
     <insert id="add" parameterType="com.yqp.domain.Log">
-        insert into log(operation_user,create_time,`type`,note) value (#{log.operationUser},#{log.createTime},#{log.type},#{log.note})
+        insert into log(operation_user,create_time,`type`,note,current_num) value (#{log.operationUser},#{log.createTime},#{log.type},#{log.note},#{log.currentNum})
     </insert>
 
     <select id="getList" resultType="com.yqp.domain.Log">
