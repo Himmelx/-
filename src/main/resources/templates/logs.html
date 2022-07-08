@@ -14,13 +14,16 @@
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
         <div class="layui-logo layui-hide-xs layui-bg-black">
-            hello world
+            <i>Y&W</i>
         </div>
 
         <!-- 头部区域（可配合layui 已有的水平导航） -->
         <ul class="layui-nav layui-layout-right">
+            <li style="position: absolute;right: 28vw;width: 32vw;top: 1.5vh;font-size: 25px;">
+                愿有岁月可回首，且以深情共白头
+            </li>
             <li class="layui-nav-item layui-hide layui-show-md-inline-block">
-                <a href="javascript:;">
+                <a href="javascript:;" th:text="${username}">
                     用户名
                 </a>
                 <dl class="layui-nav-child">
@@ -34,8 +37,9 @@
         <div class="layui-side-scroll">
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree" lay-filter="test">
-                <li class="layui-nav-item"><a th:href="@{/log/list}">日志</a></li>
-                <li class="layui-nav-item"><a th:href="@{/count/getNumber}">计数</a></li>
+                <li class="layui-nav-item"><a style="text-align: center;margin-top: 50px" th:href="@{/count/getNumber}">计数</a></li>
+                <li class="layui-nav-item"><a style="text-align: center;margin-top: 50px" th:href="@{/log/toList}">日志</a></li>
+                <li class="layui-nav-item"><a style="text-align: center;margin-top: 50px" th:href="@{/login/loginOut}">注销</a></li>
             </ul>
         </div>
     </div>
@@ -45,16 +49,14 @@
         <table class="layui-hide" id="userTable" lay-filter="userTable">
         </table>
 
-<!--        <div id="userBar" style="display:none;">-->
-<!--            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>-->
-<!--        </div>-->
     </div>
 
 </div>
 
 </body>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="../static/js/layui.js" th:inline="none">
+<script src="/js/layui/layui.js" th:inline="javascript"></script>
+<script>
     //JS
     layui.use(['element', 'layer', 'util'], function(){
         var element = layui.element
@@ -92,10 +94,11 @@
         //渲染数据表格
         table.render({
             elem: '#userTable'     //渲染的目标对象
-            ,url:'/log/list'     //数据接口
+            ,url:'[[@{/log/list}]]'     //数据接口
             ,title: '日志'     //数据导出时的标题
-            ,toolbar:"#toolbarDemo"    //表头工具条
-            ,defaultToolbar:['filter', 'print', 'exports']
+            // ,toolbar:"#toolbarDemo"    //表头工具条
+            // ,defaultToolbar:['filter', 'print', 'exports']
+            ,type: 'POST'
             ,done:function(res,curr,count){
                 // alert(res);//后台url返回的json字符串
             }
@@ -107,12 +110,12 @@
             ,cols: [
                 [               //列表数据
                     // {type: 'checkbox', fixed: 'left',LAY_CHECKED:'true'},
-                    {field:'logId', title:'ID', width:80,sort:true}
-                    ,{field:'operationUser', title:'姓名', width:80}
-                    ,{field:'createTime', title:'时间',width:120,
+                    {field:'logId', title:'ID', width:100,sort:true}
+                    ,{field:'operationUser', title:'姓名', width:150}
+                    ,{field:'createTime', title:'时间',width:150,
                     templet: "<div>{{layui.util.toDateString(d.writeDate,'yyyy-MM-dd')}}</div>"}
-                    ,{field:'type', title:'类型', width:60}
-                    ,{field:'note', title:'信息', width:180}
+                    ,{field:'type', title:'类型', width:100}
+                    ,{field:'note', title:'信息', width:730}
                     ,{field:'currentNum', title:'当前数据',width:100}
                 ]
             ]

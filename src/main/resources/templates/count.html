@@ -19,17 +19,22 @@
             margin-top: 120px;
             text-align: center;
         }
+
     </style>
 </head>
-<body>
+<body th:style="'background-image: url(/img/赤月.jpg);'">
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
-        <div class="layui-logo layui-hide-xs layui-bg-black">
-            hello world
+        <div class="layui-logo layui-hide-xs layui-bg-black" >
+            <i>Y&W</i>
         </div>
 
         <!-- 头部区域（可配合layui 已有的水平导航） -->
         <ul class="layui-nav layui-layout-right">
+
+            <li style="position: absolute;right: 28vw;width: 32vw;top: 1.5vh;font-size: 25px;">
+                愿有岁月可回首，且以深情共白头
+            </li>
             <li class="layui-nav-item layui-hide layui-show-md-inline-block">
                 <a href="javascript:;" th:text="${username}">
                     用户名
@@ -45,16 +50,17 @@
         <div class="layui-side-scroll">
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree" lay-filter="test">
-                <li class="layui-nav-item"><a th:href="@{/log/list}">日志</a></li>
-                <li class="layui-nav-item"><a th:href="@{/count/getNumber}">计数</a></li>
+                <li class="layui-nav-item"><a style="text-align: center;margin-top: 50px" th:href="@{/count/getNumber}">计数</a></li>
+                <li class="layui-nav-item"><a style="text-align: center;margin-top: 50px" th:href="@{/log/toList}">日志</a></li>
+                <li class="layui-nav-item"><a style="text-align: center;margin-top: 50px" th:href="@{/login/loginOut}">注销</a></li>
             </ul>
         </div>
     </div>
 
     <div class="layui-body">
         <!-- 内容主体区域 -->
-        <div style="padding: 15px;">
-            <div class="countNum" id="countNum" th:text="${'当前数'+count}">
+<!--        <div style="padding: 15px;">-->
+            <div class="countNum" id="countNum" th:text="${'当前数:'+count}">
                 当前数：0
             </div>
 
@@ -71,14 +77,15 @@
                 </button>
             </div>
 
-        </div>
+<!--        </div>-->
     </div>
 
 </div>
 
 </body>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="../static/js/layui.js" th:inline="none">
+<script src="/js/layui/layui.js" th:inline="javascript"></script>
+<script>
     //JS
     layui.use(['element', 'layer', 'util'], function(){
         var element = layui.element
@@ -111,7 +118,7 @@
 <script>
     //点击加一
     function add() {
-        let name = prompt("请输入信息", "");//将输入的内容赋给变量 name ，
+        let name = prompt("请输入备注信息", "");//将输入的内容赋给变量 name ，
         //这里需要注意的是，prompt有两个参数，前面是提示的话，后面是当对话框出来后，在对话框里的默认值, 所以我在哪里传了个空
         // if (name)//如果返回的有内容
         // {
@@ -127,7 +134,7 @@
     }
     //点击减一
     function decr() {
-        let name = prompt("请输入信息", "");//将输入的内容赋给变量 name ，
+        let name = prompt("请输入备注信息", "");//将输入的内容赋给变量 name ，
         //这里需要注意的是，prompt有两个参数，前面是提示的话，后面是当对话框出来后，在对话框里的默认值, 所以我在哪里传了个空
         $.ajax({
             url: "[[@{/count/addOrReduOne}]]",
