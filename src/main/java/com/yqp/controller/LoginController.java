@@ -40,8 +40,8 @@ public class LoginController {
     }
 
     @GetMapping("/loginOut")
-    @ResponseBody
-    public void loginOut(HttpServletRequest request){
+    public String loginOut(HttpServletRequest request, Model model){
         loginService.loginOut(request);
+        return "index";
     }
 }
