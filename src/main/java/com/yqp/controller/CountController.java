@@ -1,5 +1,6 @@
 package com.yqp.controller;
 
+import com.yqp.common.Utils;
 import com.yqp.service.CountService;
 import com.yqp.service.LogService;
 import org.springframework.stereotype.Controller;
@@ -28,9 +29,11 @@ public class CountController {
 
 
     @GetMapping("/getNumber")
-    public String getNumber(Model model){
+    public String getNumber(Model model,HttpServletRequest request){
+        String username = Utils.getSession(request, "username");
         Integer currentNum = logService.getCurrentNum();
         model.addAttribute("count",currentNum);
+        model.addAttribute("username",username);
         return "count";
     }
 
