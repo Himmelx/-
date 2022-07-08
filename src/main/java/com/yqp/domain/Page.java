@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Page {
 
-    private int pageNum = 1;//分页页码，默认第一页
+    private int page = 1;//分页页码，默认第一页
 
-    private int pageSize = 10;//每页条数，默认10条
+    private int limit = 10;//每页条数，默认10条
 }

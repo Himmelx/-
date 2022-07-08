@@ -28,8 +28,8 @@ public class LogServiceImpl implements LogService {
 
     @Override
     public List<Log> getList(Page page) {
-        page.setPageNum((page.getPageNum()-1)* page.getPageSize());
-        return logMapper.getList(page.getPageNum(), page.getPageSize());
+        page.setPage((page.getPage()-1)* page.getLimit());
+        return logMapper.getList(page.getPage(), page.getLimit());
     }
 
     @Override

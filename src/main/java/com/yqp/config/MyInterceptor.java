@@ -26,12 +26,14 @@ public class MyInterceptor implements HandlerInterceptor{
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String token = Utils.getSession(request, "token");
         if (Utils.isEmpty(token)){
+            request.getRequestDispatcher("/index.html").forward(request, response);
             return false;
         }
         Integer integer = userMapper.checkToken(token);
         if (Utils.notEmpty(integer) && integer > 0){
             return true;
         }else {
+            request.getRequestDispatcher("/index.html").forward(request, response);
             return false;
         }
     }
