@@ -31,7 +31,7 @@ public class LoginController {
             return "index";
         }else {
             //登录成功将用户数据存进session
-            Utils.setSession(request,"user",user1);
+            Utils.setSession(request,"username",user1.getUsername());
             Utils.setSession(request,"token",user1.getToken());
             model.addAttribute("text","登录成功！");
             model.addAttribute("user",user1);
