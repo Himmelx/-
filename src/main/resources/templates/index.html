@@ -18,6 +18,10 @@
 <div id="login-box">
     <form th:action="@{/login/loginIn}" method="post">
         <h1>Login</h1>
+        <!-- 当用户没有登录的时候访问，会显示没有权限登录     -->
+        <div  class="input-box">
+            <p style="color: red" th:text="${text}"></p>
+        </div>
         <div class="input-box">
             <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
             <input type="text" name="username" placeholder="用户名" autocomplete="off" />
