@@ -23,7 +23,7 @@ public class LoginController {
     @Resource
     private LoginService loginService;
 
-    @GetMapping("/loginIn")
+    @PostMapping("/loginIn")
     public String loginIn(User user, HttpServletRequest request, Model model){
         User user1 = loginService.loginIn(user, request);
         if (Utils.isEmpty(user1)){
