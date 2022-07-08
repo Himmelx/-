@@ -19,7 +19,7 @@ public interface LogMapper {
      * @param log
      * @return
      */
-    int add(Log log);
+    int add(@Param("log") Log log);
 
     /**
      * 列表查询

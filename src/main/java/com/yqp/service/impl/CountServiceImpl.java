@@ -23,12 +23,19 @@ public class CountServiceImpl implements CountService {
 
     @Override
     public int addOrReduOne(String message,String type, HttpServletRequest request) {
+        int currentNum = logService.getCurrentNum();//当前数量
+
         String username = Utils.getSession(request, "username");//获取当前用户名
         Log log = new Log();
         log.setCreateTime(new Date());
         log.setNote(message);
         log.setType(type);
         log.setOperationUser(username);
+        if (Utils.notEmpty(type) && type.equals("加")){
+            log.setCurrentNum(currentNum+1);
+        }else if (Utils.notEmpty(type) && type.equals("减") && currentNum > 0){
+            log.setCurrentNum(currentNum-1);
+        }
         return logService.add(log);
     }
 

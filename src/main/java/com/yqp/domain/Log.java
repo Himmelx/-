@@ -39,4 +39,9 @@ public class Log {
      */
     private String note;
 
+    /**
+     * 当前次数
+     */
+    private Integer currentNum;
+
 }
