@@ -35,4 +35,10 @@ public interface LogMapper {
      * @return
      */
     Integer getCurrentNum();
+
+    /**
+     * 获取总数
+     * @return
+     */
+    int getCount();
 }

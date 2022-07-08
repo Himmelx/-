@@ -41,4 +41,9 @@ public class LogServiceImpl implements LogService {
             return currentNum;
         }
     }
+
+    @Override
+    public int getCount() {
+        return logMapper.getCount();
+    }
 }

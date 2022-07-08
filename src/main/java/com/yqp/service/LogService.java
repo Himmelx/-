@@ -26,4 +26,10 @@ public interface LogService {
      * @return
      */
     int getCurrentNum();
+
+    /**
+     * 获取总数
+     * @return
+     */
+    int getCount();
 }

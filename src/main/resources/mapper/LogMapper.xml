@@ -16,4 +16,8 @@
         select current_num from log order by create_time desc limit 1
     </select>
 
+    <select id="getCount" resultType="java.lang.Integer">
+        select count(1) from log;
+    </select>
+
 </mapper>
