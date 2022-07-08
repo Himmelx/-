@@ -4,6 +4,7 @@ import com.yqp.common.Utils;
 import com.yqp.domain.Log;
 import com.yqp.service.CountService;
 import com.yqp.service.LogService;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,7 @@ import java.util.Date;
  * @Date 2022/7/8 000814:37
  * @Description TODO
  */
+@Service
 public class CountServiceImpl implements CountService {
 
     @Resource
