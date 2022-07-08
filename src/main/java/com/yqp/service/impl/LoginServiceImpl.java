@@ -25,14 +25,7 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public User loginIn(User user, HttpServletRequest request) {
         User user1 = userMapper.loginIn(user.getUsername(), user.getPassword());
-        if (Utils.isEmpty(user1)){
-            throw new RuntimeException("用户名或密码错误！");
-        }else {
-            //登录成功将用户数据存进session
-            Utils.setSession(request,"user",user1);
-            Utils.setSession(request,"token",user1.getToken());
-            return user1;
-        }
+        return user1;
     }
 
     @Override

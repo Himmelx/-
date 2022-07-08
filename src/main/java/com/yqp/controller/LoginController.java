@@ -1,9 +1,11 @@
 package com.yqp.controller;
 
 import com.yqp.common.ResponseJson;
+import com.yqp.common.Utils;
 import com.yqp.domain.User;
 import com.yqp.service.LoginService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -22,9 +24,18 @@ public class LoginController {
     private LoginService loginService;
 
     @GetMapping("/loginIn")
-    @ResponseBody
-    public ResponseJson loginIn(User user, HttpServletRequest request){
-        return new ResponseJson(loginService.loginIn(user,request));
+    public String loginIn(User user, HttpServletRequest request, Model model){
+        User user1 = loginService.loginIn(user, request);
+        if (Utils.isEmpty(user1)){
+            model.addAttribute("text","用户名或密码错误！");
+            return "index";
+        }else {
+            //登录成功将用户数据存进session
+            Utils.setSession(request,"user",user1);
+            Utils.setSession(request,"token",user1.getToken());
+            model.addAttribute("text","登录成功！");
+            return "count";
+        }
     }
 
     @GetMapping("/loginOut")
