@@ -8,9 +8,6 @@ import org.apache.ibatis.annotations.Select;
 @Mapper
 public interface UserMapper {
 
-    @Select("select count(*) from user")
-    int allUser();
-
     /**
      * 登录
      * @param username
@@ -19,5 +16,12 @@ public interface UserMapper {
      */
     User loginIn(@Param("username") String username,
                  @Param("password") String password);
+
+    /**
+     * token校验
+     * @param token
+     * @return
+     */
+    Integer checkToken(String token);
 
 }

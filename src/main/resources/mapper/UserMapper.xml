@@ -9,4 +9,9 @@
     </select>
 
 
+    <select id="checkToken" resultType="integer">
+        select  count from  user where token = #{token} limit 1
+    </select>
+
+
 </mapper>
