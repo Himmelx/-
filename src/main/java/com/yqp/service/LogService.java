@@ -25,5 +25,5 @@ public interface LogService {
      * 获取当前次数
      * @return
      */
-    Integer getCurrentNum();
+    int getCurrentNum();
 }

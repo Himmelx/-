@@ -1,5 +1,6 @@
 package com.yqp.service.impl;
 
+import com.yqp.common.Utils;
 import com.yqp.domain.Log;
 import com.yqp.domain.Page;
 import com.yqp.mapper.LogMapper;
@@ -32,7 +33,12 @@ public class LogServiceImpl implements LogService {
     }
 
     @Override
-    public Integer getCurrentNum() {
-        return logMapper.getCurrentNum();
+    public int getCurrentNum() {
+        Integer currentNum = logMapper.getCurrentNum();
+        if (Utils.isEmpty(currentNum)){
+            return 0;
+        }else {
+            return currentNum;
+        }
     }
 }
