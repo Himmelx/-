@@ -47,7 +47,7 @@
             <div class="panel-heading" style="color: #00d95a;font-size: 18px;">日志列表</div>
 
             <!-- 日志列表  从数据库中取出-->
-            <div id="articles" th:fragment="article_list">
+            <div>
                 <ul style="margin-bottom: 0" class="list-group" th:each="log:${list}">
                     <li class="list-group-item" th:text="${log}">
                         日志
