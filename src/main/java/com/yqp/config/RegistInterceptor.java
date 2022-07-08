@@ -28,13 +28,15 @@ public class RegistInterceptor implements WebMvcConfigurer {
                 .addPathPatterns("/**")
                 //====== 以下为不需要拦截的地址 ======
                 //跳转到登录页
-                .excludePathPatterns("/login")
+                .excludePathPatterns("/login/loginIn")
                 //跳转到登出成功页
-                .excludePathPatterns("/logout")
-                //校验登录开放接口
-                .excludePathPatterns("/sso/checkLogin")
-                //校验令牌开放接口
-                .excludePathPatterns("/sso/checkToken");
+                .excludePathPatterns("/login/loginOut")
+                //主页面
+                .excludePathPatterns("/")
+                //静态资源
+                .excludePathPatterns("/css/*")
+                .excludePathPatterns("/js/*")
+                .excludePathPatterns("/img/*");
     }
 
 
