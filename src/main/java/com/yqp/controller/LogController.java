@@ -1,14 +1,17 @@
 package com.yqp.controller;
 
 import com.yqp.common.ResponseJson;
+import com.yqp.domain.Log;
 import com.yqp.domain.Page;
 import com.yqp.service.LogService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author YuQingPeng
@@ -24,8 +27,10 @@ public class LogController {
 
     @GetMapping("/list")
     @ResponseBody
-    public ResponseJson getLogList(Page page){
-        return new ResponseJson(logService.getList(page));
+    public String getLogList(Page page, Model model){
+        List<Log> list = logService.getList(page);
+        model.addAttribute("list",list);
+        return "logs";
     }
 
 
