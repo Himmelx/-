@@ -27,7 +27,7 @@ public class CountController {
     private CountService countService;
 
 
-    @GetMapping("/getNumber")
+    @PostMapping("/getNumber")
     public String getNumber(Model model){
         Integer currentNum = logService.getCurrentNum();
         model.addAttribute("count",currentNum);

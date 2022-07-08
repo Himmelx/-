@@ -43,7 +43,7 @@ public class LoginController {
             model.addAttribute("text","登录成功！");
             model.addAttribute("user",user1);
             model.addAttribute("count",currentNum);
-            return "count";
+            return "redirect:/count/getNumber";
         }
     }
 
